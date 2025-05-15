@@ -1,13 +1,16 @@
 import { Component, signal } from '@angular/core';
 import { Product } from '../../models/products.model';
+import { ProductCard } from "./product-card/product-card";
 
 @Component({
   selector: 'app-products-list',
-  imports: [],
+  imports: [ProductCard],
   template: `
-    <p>
-      products-list works!
-    </p>
+    <div class="p-8 grid grid-cols-2 gap-4">
+      @for (product of products(); track product.id){
+        <app-product-card [product]="product"/>
+      }
+    </div>
   `,
   styles: ``
 })
@@ -17,7 +20,7 @@ export class ProductsList {
       "title":"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
       "price":109.95,
       "image":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      "stock": 10,
+      "stock": 0,
     },
 
 
@@ -41,16 +44,7 @@ export class ProductsList {
       "price":15.99,
       "image":"https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
       "stock": 10,
-    },
-
-
-    {"id":5,
-      "title":"John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
-      "price":695,   
-      "image":"https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
-      "stock": 10,
-    }     
-
+    },   
   ])
 
 }
