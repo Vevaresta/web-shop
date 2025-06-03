@@ -12,5 +12,11 @@ export class Cart {
     this.cart.set([...this.cart(), product]);
   }
 
+  removeFromCart(id: number)
+  {
+    this.cart.set(this.cart().filter((p) => p.id !== id));
+
+  }
+
   constructor() { }
 }

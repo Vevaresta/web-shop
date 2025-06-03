@@ -1,15 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Cart } from '../../services/cart';
+import { CartItemsList } from "../cart-items-list/cart-items-list";
 
 @Component({
   selector: 'app-cart-component',
-  imports: [],
+  imports: [CartItemsList],
   template: `
-    <p>
-      cart-component works!
-    </p>
+    <div class="p-6 flex flex-col gap-4">
+      <h2 class="text-2xl">Shopping Cart</h2>
+      @for (item of cartService.cart(); track item.id) 
+      {
+        <app-cart-items-list [item]="item"/>
+      }
+    </div>
   `,
   styles: ``
 })
 export class CartComponent {
-
+  
+  cartService = inject(Cart)
 }
